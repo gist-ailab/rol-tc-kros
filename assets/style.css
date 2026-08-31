@@ -97,8 +97,23 @@ header {
   background: linear-gradient(135deg, var(--hero-deep) 0%, var(--hero-mid) 58%, var(--hero-soft) 100%);
   padding: 64px 40px 68px;
   color: white;
-  /* 하단을 사선으로 마감해 원본의 직선 마감과 구별 */
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 26px));
+  /* 자식을 자르지 않도록 position + z-index 로 아래 섹션보다 위에 그립니다.
+     (히어로에 clip-path 를 걸면 일정 추가 팝업처럼 밖으로 나오는 자식까지 잘립니다.) */
+  position: relative;
+  z-index: 1;
+}
+/* 하단 사선 마감 — 본문 배경색 삼각형을 덮어 그려 원본의 직선 마감과 구별합니다. */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 26px;
+  background: var(--bg);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 .hero-inner { max-width: 900px; margin: 0 auto; }
 .hero-eyebrow {
@@ -172,10 +187,61 @@ h1 em { font-style: normal; color: rgba(255,255,255,0.75); }
   flex-shrink: 0;
 }
 .chip-icon img { width: 16px; height: 16px; display: block; }
+.chip-icon svg { width: 16px; height: 16px; display: block; }
 .chip-icon:hover {
   background: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(60,20,10,0.35);
+}
+
+/* 일시 칩의 "일정 추가" 팝업 */
+/* 팝업이 히어로의 사선 마감(.hero::after)과 아래 섹션보다 위에 오도록 */
+.cal-add { position: relative; display: inline-flex; z-index: 20; }
+.cal-add-btn {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+.cal-add-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 200;
+  width: 280px;
+  max-width: calc(100vw - 40px);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(60,20,10,0.25);
+  padding: 6px;
+  /* 밝은 카드이므로 히어로의 흰 글자색을 본문 색으로 되돌립니다. */
+  color: var(--text);
+}
+.cal-add-menu[hidden] { display: none; }
+.cal-add-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.15s;
+}
+.cal-add-item:hover { background: var(--bg3); }
+.cal-add-item img,
+.cal-add-item svg { width: 20px; height: 20px; flex-shrink: 0; display: block; }
+.cai-text { display: flex; flex-direction: column; line-height: 1.35; }
+.cai-label { font-size: 13px; font-weight: 500; color: var(--text); }
+.cai-desc { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+.cal-add-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 8px 10px 4px;
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
 }
 
 /* ── Section ── */
