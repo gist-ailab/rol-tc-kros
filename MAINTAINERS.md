@@ -83,6 +83,41 @@ Gallery 섹션 구조를 따라 섹션을 추가하면 됩니다.
 4. `가입신청 폼 준비 중` 안내 박스(`.form-placeholder`)를 주석 처리하고 임베드 블록의 주석을 해제합니다.
    자바스크립트 없이 주석 전환만으로 동작합니다.
 
+## 구글 포토 슬라이드쇼 임베드 (검증 완료)
+
+구글 포토는 공식 임베드를 제공하지 않지만, 다음 우회 방법이 실제 렌더링 검증을 거쳐 적용되어 있습니다
+(적용 예: `photos/index.html` 의 2026 제2회 서브탭).
+
+1. 공유 앨범 페이지(`photos.app.goo.gl` 주소를 브라우저로 연 뒤의 페이지) HTML에서
+   `https://lh3.googleusercontent.com/pw/...` 형태의 이미지 원본 주소를 추출합니다.
+   터미널에서는 다음 한 줄로 뽑을 수 있습니다.
+   ```bash
+   curl -sL "<공유 주소>" | grep -oE 'https://lh3\.googleusercontent\.com/pw/[A-Za-z0-9_-]+' | awk '!seen[$0]++'
+   ```
+2. `pa-gallery-player-widget` 블록(publicalbum.org 위젯)에 이미지 주소들을 `<object data="...=w1920">` 로
+   나열하고, 스크립트 `https://cdn.jsdelivr.net/npm/publicalbum@latest/embed-ui.min.js` 를 페이지에 한 번 로드합니다.
+   정확한 마크업은 `photos/index.html` 의 기존 블록이나 `_reference/embed-verified-sample.html` 을 복사해서 씁니다.
+3. 정적 썸네일이 필요하면 같은 주소에 `=w800` 접미사를 붙여 일반 `<img>` 로 씁니다
+   (적용 예: `workshops/2026/2nd/index.html` 의 사진 섹션).
+
+**한계:** 앨범 공유를 중단하면 이미지 주소가 무효화되고, 앨범에 사진을 추가해도 자동 반영되지 않으므로
+주소를 다시 추출해 갱신해야 합니다.
+
+## 이전 워크샵 페이지 만들기 — 데이터 출처
+
+지난 워크샵의 프로그램·운영 기록은 회차별 구글 시트에서 관리합니다.
+
+- 2026 제2회 워크샵 정보 시트: https://docs.google.com/spreadsheets/d/1fiAD_RtIqXVoIp2vGmMvG_6h8eJor1jfj7EhmKRswG0/edit
+  (탭: Form Responses 1 = 참가 신청 응답, 시간표, 출장계, 결산)
+- 공식 공지는 한국로봇학회(KROS) 학술행사 게시판에 올라갑니다.
+
+**⚠️ 개인정보 규칙:** 참가 응답·결산·출장계 탭에는 전화번호·이메일 등 개인정보가 있습니다.
+웹사이트에는 **시간표(발표자 이름·소속·발표 제목)와 날짜·장소 같은 행사 사실 정보만** 옮기고,
+연락처·결제 정보는 어떤 페이지에도 싣지 않습니다.
+
+상세 페이지 작성 절차는 [이전 워크샵 회차 추가](#이전-워크샵-회차-추가-workshops)를 따르되,
+완성 예시는 `workshops/2026/2nd/index.html` 을 참고하면 됩니다.
+
 ## 회원 명단 관리
 
 회원 명단은 아래 구글 시트에서 관리합니다. (구글 계정 권한이 있어야 열립니다.)

@@ -33,12 +33,34 @@
     <div class="section-label">Gallery</div>
     <h2>행사 사진</h2>
 
-    <!-- 빈 상태: 아직 게시된 사진이 없습니다 -->
-    <div class="empty-state">
-      <div class="es-icon">📷</div>
-      <div class="es-title">아직 게시된 사진이 없습니다</div>
-      <div class="es-desc">첫 워크샵 이후 행사 사진이 게시됩니다.</div>
+    <div class="subtab-bar" role="tablist">
+      <button type="button" class="subtab-btn" data-subtab="2026-2nd">2026 제2회</button>
     </div>
+
+    <section class="subtab-panel" data-panel="2026-2nd" aria-label="2026년 제 2회 로봇학습연구회 워크샵">
+      <h3>2026년 제 2회 로봇학습연구회 워크샵</h3>
+
+      <!-- 구글 포토 공유 앨범 임베드 (publicalbum 갤러리 플레이어). 스크립트는 페이지 하단에 한 번만 로드합니다. -->
+      <div class="pa-gallery-player-widget" style="width:100%; height:480px; display:none;"
+        data-link="https://photos.app.goo.gl/bgozVhoFPnv25eqN9"
+        data-title="2026년 제 2회 로봇학습연구회 워크샵"
+        data-description="로봇학습연구회 워크샵 사진">
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczNZm8gnkgyC5dVDt9pqFN40FkKkPP2-08vgcXcuilZ1yBq27Qb-HbkcXqgGuBd2SRfiasIVi2m9OvB261UkhfR204PfiYzmP7NLCGtBJAWZIhJx3bDu=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczObJM-GMmH3RuxcZwmAQfrSmL_6r4vaj93c1Sk2X6lMabNsvVuFtO1uEqH4aOdkil2j961jJ8h6dGB7F17t59xSsUEZILJds1umHQarWNm05Fkod5O-=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczO2IMRbhn7n3Y6XPUglhHXlQR2E0qw1ZS5zOebIGpPOSg74zRa80b1Jd3b98zG3Q0Ub4LGFD-jkbV29Ln4NZaECfk32iUDtXTnpTGsiy15sPZQecX3B=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczNsaJivNJmlZjg1-wCCz4uIjnFw60olWikUMNdLGfER5-AJ2qnBXOquDBekaqNLOcEXPednrEy8dZF1e1P12ZOMASXJubMmkq3Kk3J1u78w-3txOYWn=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczMaLjATuN2y2zZb-h0UYHyFiblTrrJzzd8qkRS3pKf3k_3u6PTOEXKXAgh--xeUao5w7o1Ekp1lsxcCAyBGG_5TNy3Q_od91XiVZnr985m8JqifxXlk=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczMRBrJ9fdLqltSFA6Q1SVYAdYAVf5H5zhDEP3uieKHIUFPX42TrATcK4s5utkOWXLInvKtlr0IULZeVIJIPSNzq36ZAkpkF2S9DZqQnPPkoZBa3nAxe=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczN5bb6i03nWYY7hJsSoRogK6I6tCDma95W3DJlLKCX6AC44eGnLzG4H2ynPex7SR66mcjdrpv8hBAzhMIEznBEFnOU-6FPjE1_yVv9w39P7DnQG0RPJ=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczMQJpllidaIThHnUGhqCQTijQQxk1Mj1q5er2gMI9Cvj-AhbLAziF2bzwF1izTIy5MYTcbb8_8ljlnws5WELqK9lqQ6tuxY6fcF4JHt5OtH3vFpr0Qq=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczM8bBdr70lV9CpWe75GrczI_Y-hT6H9gB8OCyE9nbc-nSNb2-InpWN8aJHB-f3nHLN7uROR-xsdOftMVvOyxwAxJGeR5NZ3-zVWklcnQxFopxFkj7Sr=w1920" aria-label="사진"></object>
+        <object data="https://lh3.googleusercontent.com/pw/AP1GczOkRj1C-crRRU_56TXwduC9y3j1L3UkUqKlUJRFwXTlLYbIzLfjIFiJCnLjXI-lNwgwlcSw_tIp5SHT5tqlN9FlAYtOVMzz98ucJ_NP8Z3x51R8wMl1=w1920" aria-label="사진"></object>
+      </div>
+
+      <a class="btn subtab-album" href="https://photos.app.goo.gl/bgozVhoFPnv25eqN9" target="_blank" rel="noopener noreferrer" style="margin-top:20px;">
+        구글 포토 앨범에서 보기 ↗
+      </a>
+    </section>
 
     <!--
     ════════════════════════════════════════════════════════════════
@@ -52,6 +74,9 @@
       · 앨범 주소    — .subtab-album 버튼의 href
                        (GOOGLE_PHOTOS_ALBUM_URL_HERE 자리에 구글 포토 공유 주소를 넣습니다.
                         구글 포토는 iframe 임베드가 불가하므로 외부 링크 버튼으로만 처리합니다.)
+      · 앨범 슬라이드쇼 — 구글 포토 임베드를 쓰려면 2026 제2회 회차처럼 pa-gallery-player-widget 블록을
+                       패널 안에 넣고, 사진마다 <object data="...=w1920"> 를 채웁니다.
+                       (embed-ui.min.js 스크립트는 페이지 하단에 이미 한 번 로드되어 있으므로 다시 넣지 않습니다.)
       · 이미지 경로  — <figure> 안 <img>의 src·alt·figcaption
                        (회차별 이미지 폴더 관례: photos/img/<연도>-<회차>/, 예: photos/img/2026-1st/01.jpg)
 
@@ -95,6 +120,9 @@
   한국로봇학회 산하 연구회 &nbsp;·&nbsp;
   문의처 추후 안내
 </footer>
+
+<!-- 구글 포토 갤러리 플레이어 스크립트 (pa-gallery-player-widget 임베드용, 페이지에 한 번만 로드) -->
+<script src="https://cdn.jsdelivr.net/npm/publicalbum@latest/embed-ui.min.js" async></script>
 
 <!-- 회차별 서브탭 전환 스크립트 (패널이 없으면 아무 일도 하지 않고 종료합니다) -->
 <script>
