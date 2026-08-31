@@ -41,26 +41,50 @@
     </div>
 
     <!--
-    ────────────────────────────────────────────────────────────────
-    사진 추가 방법
-    1. 이미지 파일을 photos/img/ 폴더에 넣습니다. (예: photos/img/2026-1st-01.jpg)
-    2. 위 빈 상태(.empty-state) 대신 아래 .gallery-grid 블록을 사용하고,
-       <figure> 블록을 사진 수만큼 복사해 src·alt·figcaption을 채웁니다.
-    ────────────────────────────────────────────────────────────────
+    ════════════════════════════════════════════════════════════════
+    회차별 서브탭 템플릿 (현재는 개최된 워크샵이 없어 주석 처리해 둡니다)
 
-    <div class="gallery-grid">
+    회차 추가 시: 이 블록을 복사해 위 빈 상태(.empty-state)를 대체하고,
+    아래 네 가지를 실제 값으로 채웁니다.
+      · 탭 라벨      — .subtab-btn 안의 텍스트 (예: 2026 제1회)
+      · 패널 제목    — .subtab-panel 안의 <h3> 텍스트
+                       (형식은 반드시 "20XX년 제 X회 로봇학습연구회 워크샵")
+      · 앨범 주소    — .subtab-album 버튼의 href
+                       (GOOGLE_PHOTOS_ALBUM_URL_HERE 자리에 구글 포토 공유 주소를 넣습니다.
+                        구글 포토는 iframe 임베드가 불가하므로 외부 링크 버튼으로만 처리합니다.)
+      · 이미지 경로  — <figure> 안 <img>의 src·alt·figcaption
+                       (회차별 이미지 폴더 관례: photos/img/<연도>-<회차>/, 예: photos/img/2026-1st/01.jpg)
 
-      <figure>
-        <img src="img/2026-1st-01.jpg" alt="2026년도 제1회 워크샵 현장 사진">
-        <figcaption>2026년도 제1회 워크샵 · 단체 사진</figcaption>
-      </figure>
+    회차가 둘 이상이면 .subtab-btn 과 .subtab-panel 을 한 쌍씩 더 추가하고,
+    두 요소의 data-subtab · data-panel 값을 같은 문자열로 맞춰 짝지어 줍니다.
+    탭 전환은 페이지 하단의 스크립트가 자동으로 처리하며, 첫 번째 탭이 기본으로 선택됩니다.
+    ════════════════════════════════════════════════════════════════
 
-      <figure>
-        <img src="img/2026-1st-02.jpg" alt="발표 현장 사진">
-        <figcaption>발표 세션</figcaption>
-      </figure>
-
+    <div class="subtab-bar" role="tablist">
+      <button type="button" class="subtab-btn" data-subtab="2026-1st">2026 제1회</button>
     </div>
+
+    <section class="subtab-panel" data-panel="2026-1st" aria-label="2026년 제 1회 로봇학습연구회 워크샵">
+      <h3>2026년 제 1회 로봇학습연구회 워크샵</h3>
+
+      <a class="btn subtab-album" href="GOOGLE_PHOTOS_ALBUM_URL_HERE" target="_blank" rel="noopener noreferrer">
+        구글 포토 앨범에서 보기 ↗
+      </a>
+
+      <div class="gallery-grid">
+
+        <figure>
+          <img src="img/2026-1st/01.jpg" alt="2026년 제 1회 로봇학습연구회 워크샵 현장 사진">
+          <figcaption>2026년 제 1회 워크샵 · 단체 사진</figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/2026-1st/02.jpg" alt="발표 세션 현장 사진">
+          <figcaption>발표 세션</figcaption>
+        </figure>
+
+      </div>
+    </section>
     -->
 
   </section>
@@ -71,6 +95,40 @@
   한국로봇학회 산하 연구회 &nbsp;·&nbsp;
   문의처 추후 안내
 </footer>
+
+<!-- 회차별 서브탭 전환 스크립트 (패널이 없으면 아무 일도 하지 않고 종료합니다) -->
+<script>
+  (function () {
+    function initSubtabs() {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.subtab-btn'));
+      var panels = Array.prototype.slice.call(document.querySelectorAll('.subtab-panel'));
+      if (buttons.length === 0 || panels.length === 0) return;
+
+      function activate(key) {
+        buttons.forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-subtab') === key);
+        });
+        panels.forEach(function (panel) {
+          panel.hidden = panel.getAttribute('data-panel') !== key;
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activate(btn.getAttribute('data-subtab'));
+        });
+      });
+
+      activate(buttons[0].getAttribute('data-subtab'));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSubtabs);
+    } else {
+      initSubtabs();
+    }
+  })();
+</script>
 
 </body>
 </html>

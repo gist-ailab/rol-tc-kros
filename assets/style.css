@@ -377,6 +377,42 @@ h2 {
   color: var(--text-muted);
 }
 
+/* ── Photo 서브탭 (회차별 갤러리) ── */
+.subtab-bar {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.subtab-btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 14px;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.subtab-btn:hover { color: var(--accent); background: var(--accent-dim); }
+.subtab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.subtab-panel[hidden] { display: none; }
+.subtab-panel h2,
+.subtab-panel h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.subtab-album { margin-bottom: 20px; }
+
 /* ── 가입신청 폼 영역 ── */
 .form-placeholder {
   background: #eff6ff;
@@ -446,4 +482,6 @@ footer a:hover { color: var(--accent); }
   .info-grid { grid-template-columns: 1fr; }
   .speaker-grid { grid-template-columns: 1fr; }
   .workshop-grid { grid-template-columns: 1fr; }
+  .subtab-bar { flex-wrap: nowrap; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
