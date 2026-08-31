@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="네이버지도">
+  <defs>
+    <linearGradient id="nm" x1="50" y1="6" x2="50" y2="94" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B6DEB"/>
+      <stop offset="0.45" stop-color="#12A5DE"/>
+      <stop offset="0.72" stop-color="#12C97E"/>
+      <stop offset="1" stop-color="#0BD531"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#nm)" d="M50 6c-19.9 0-36 15.5-36 34.6 0 9.6 4.3 18.2 9.9 25.4l20.6 26.3c2.8 3.6 8.2 3.6 11 0l20.6-26.3C81.7 58.8 86 50.2 86 40.6 86 21.5 69.9 6 50 6z"/>
+  <path fill="#fff" d="M37.5 27h9.8l11.4 17.1V27h9.8v31h-9.8L47.3 40.9V58h-9.8z"/>
+</svg>

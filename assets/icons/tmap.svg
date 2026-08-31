@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="TMAP">
+  <defs>
+    <linearGradient id="tm" x1="14" y1="30" x2="80" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F03BC8"/>
+      <stop offset="0.28" stop-color="#8B37E8"/>
+      <stop offset="0.55" stop-color="#1E7BF5"/>
+      <stop offset="0.8" stop-color="#16B7DE"/>
+      <stop offset="1" stop-color="#25D9A4"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#tm)" d="M14 16h72v18H60.5c-7.1 0-12.8 5.7-12.8 12.8V86H29.6V34H14z"/>
+  <path fill="url(#tm)" d="M47.7 46.8c0-7.1 5.7-12.8 12.8-12.8H86V16H60.5C46.4 16 35 27.4 35 41.5V86h12.7z"/>
+</svg>

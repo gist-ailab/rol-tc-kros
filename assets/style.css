@@ -151,6 +151,33 @@ h1 em { font-style: normal; color: rgba(255,255,255,0.75); }
 .meta-chip .value.tbd { color: rgba(255,255,255,0.6); font-style: italic; font-weight: 400; }
 .chip-accent { border-color: rgba(255,255,255,0.4); }
 
+/* 히어로 칩 내부 아이콘 링크 (일시=캘린더 추가, 장소=지도 앱) */
+.chip-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+.chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  /* 어두운 히어로 배경에서 로고 색이 묻히지 않도록 밝은 배경으로 대비 확보 */
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 1px 3px rgba(60,20,10,0.3);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  flex-shrink: 0;
+}
+.chip-icon img { width: 16px; height: 16px; display: block; }
+.chip-icon:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(60,20,10,0.35);
+}
+
 /* ── Section ── */
 .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 section { padding: 48px 0; border-top: 1px solid var(--border); }
