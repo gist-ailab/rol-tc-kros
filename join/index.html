@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로봇학습연구회 | 가입신청</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+
+  <!--
+  ────────────────────────────────────────────────────────────────
+  구글 폼 연결 방법 (자바스크립트 없이 주석 해제만으로 전환)
+  1. 구글 폼을 만들고 [보내기] → [<> 임베드] 에서 iframe 주소를 복사합니다.
+  2. "가입신청 폼 준비 중" 안내 박스(.form-placeholder)를 주석 처리하고,
+       주석 처리된 폼 임베드 블록(.form-embed)의 주석을 해제합니다.
+  3. GOOGLE_FORM_URL_HERE 플레이스홀더 두 곳을 실제 폼 주소로 교체합니다.
+       - 폼 임베드 블록의 <iframe> src (embed 형태의 주소, 예: .../viewform?embedded=true)
+       - "새 창에서 열기" 버튼의 href (일반 폼 주소, 예: .../viewform)
+  ※ 응답은 README 에 안내된 구글 시트에 자동으로 쌓입니다.
+  ────────────────────────────────────────────────────────────────
+  -->
+</head>
+<body>
+
+<header>
+  <a class="logo" href="../index.html">RLR <span>/ Robot Learning</span></a>
+  <nav class="tabs">
+    <a class="tab" href="../index.html">홈</a>
+    <a class="tab" href="../workshops/index.html">이전 워크샵</a>
+    <a class="tab" href="../photos/index.html">Photo</a>
+    <a class="tab active" href="../join/index.html">가입신청</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">로봇학습연구회 · Membership</div>
+    <h1>가입 <em>신청</em></h1>
+    <p class="hero-sub">로봇학습연구회 회원 가입을 신청하는 페이지입니다</p>
+  </div>
+</div>
+
+<div class="container">
+  <section>
+    <div class="section-label">Membership</div>
+    <h2>연구회 가입 안내</h2>
+    <p class="prose">
+      로봇학습연구회는 <strong>한국로봇학회 산하 연구회</strong>로, 로봇 학습 분야의 연구자들이
+      최신 연구를 교류하는 모임입니다. 아래 신청 폼을 통해 가입을 신청하면,
+      워크샵 일정과 연구회 소식을 안내받을 수 있습니다.
+      가입 대상은 로봇 학습 및 관련 분야의 연구자, 대학원생, 실무자입니다.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-label">Apply</div>
+    <h2>가입신청 폼</h2>
+
+    <!-- 폼 URL 이 아직 없으므로 안내 박스를 노출합니다. 폼이 준비되면 이 블록을 주석 처리하세요. -->
+    <div class="form-placeholder">
+      <div class="fp-icon">📝</div>
+      <div class="fp-title">가입신청 폼 준비 중입니다</div>
+      <div class="fp-desc">
+        가입신청 폼을 준비하고 있습니다. 폼이 열리면 이 자리에 신청 양식이 바로 표시됩니다.
+        폼 주소가 준비되면 파일 상단 주석의 안내에 따라 연결해 주세요.
+      </div>
+    </div>
+
+    <!--
+    ────────────────────────────────────────────────────────────────
+    폼 임베드 블록 — 폼 주소가 준비되면 위 .form-placeholder 를 주석 처리하고
+    이 블록의 주석을 해제하세요. (GOOGLE_FORM_URL_HERE 는 아래 새 창 버튼과 함께
+    두 곳을 실제 주소로 교체합니다.)
+    ────────────────────────────────────────────────────────────────
+
+    <div class="form-embed">
+      <iframe src="GOOGLE_FORM_URL_HERE" loading="lazy">로딩 중…</iframe>
+    </div>
+    -->
+
+    <!-- 새 창에서 폼을 여는 보조 버튼 — 항상 표시되며, 폼 주소로 교체하는 두 곳 중 한 곳입니다. -->
+    <p style="margin-top:18px;text-align:center;">
+      <a class="btn" href="GOOGLE_FORM_URL_HERE" target="_blank" rel="noopener">🔗 폼이 보이지 않으면 새 창에서 열기</a>
+    </p>
+
+  </section>
+</div>
+
+<footer>
+  로봇학습연구회 (Robot Learning Research Society) &nbsp;·&nbsp;
+  한국로봇학회 산하 연구회 &nbsp;·&nbsp;
+  문의처 추후 안내
+</footer>
+
+</body>
+</html>
