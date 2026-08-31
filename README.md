@@ -3,8 +3,8 @@
 한국로봇학회(KROS) 산하 **로봇학습연구회**의 워크샵 및 연구회 안내 웹사이트입니다.
 빌드 도구 없이 순수 HTML/CSS 만으로 구성했으며, GitHub Pages 로 배포됩니다.
 
-- 배포 주소: https://gist-ailab.github.io/kros-rlr/ (레포 공개 전환 후 활성화 예정)
-- 원격 저장소: gist-ailab/kros-rlr
+- 배포 주소: https://gist-ailab.github.io/rol-tc-kros/
+- 원격 저장소: gist-ailab/rol-tc-kros
 
 ## 사이트 구조
 
@@ -22,7 +22,7 @@
 ```
 
 모든 페이지 상단에는 공통 탭 내비게이션(`홈` / `이전 워크샵` / `Photo` / `가입신청`)이 있습니다.
-프로젝트 페이지(`/kros-rlr/` 하위 경로)로 배포되므로 모든 링크는 상대 경로로 작성되어 있습니다.
+프로젝트 페이지(`/rol-tc-kros/` 하위 경로)로 배포되므로 모든 링크는 상대 경로로 작성되어 있습니다.
 
 ## 사이트 관리
 

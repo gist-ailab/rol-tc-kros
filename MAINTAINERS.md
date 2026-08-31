@@ -4,8 +4,9 @@
 사이트 소개는 `README.md` 에 있고, 실제 수정 절차는 전부 이 문서에 모여 있습니다.
 클로드 코드로 작업할 때도 이 문서를 기준으로 삼으면 됩니다 (`CLAUDE.md` 가 이 문서를 가리킵니다).
 
-> ⚠️ 현재 레포는 **비공개**입니다. 공개로 전환하면 이 문서도 함께 공개되므로,
-> 공개 전에 아래 [공개 전 체크리스트](#공개-전-체크리스트)를 확인하세요.
+> ℹ️ 이 레포는 **공개** 상태이며 사이트가 https://gist-ailab.github.io/rol-tc-kros/ 에서 서비스 중입니다.
+> 이 문서도 함께 공개되어 있으니, 개인정보나 비공개 자료를 적지 마세요.
+> `main` 에 푸시하면 1분 내외로 사이트에 반영됩니다.
 
 ## 사진 올리는 법 — 회차별 서브탭 운영
 
@@ -174,17 +175,21 @@ file:///mnt/HDD1/Workspace/src/Project/RobotLearningResearch/index.html
 cd /mnt/HDD1/Workspace/src/Project/RobotLearningResearch && python3 -m http.server 8000
 ```
 
-## 공개 전 체크리스트
+## 배포 (이미 공개됨)
 
-디버그가 끝나면 공개합니다. **비공개 레포에서는 Pages 를 켤 수 없다는 것을 확인했으므로**(무료 조직 요금제),
-공개 전환이 곧 배포 시점입니다.
+사이트는 GitHub Pages 로 서비스 중입니다.
 
-1. 네 페이지를 로컬에서 열어 내용·링크·오탈자를 최종 확인합니다.
-2. 이 문서(`MAINTAINERS.md`)도 함께 공개된다는 점을 결정합니다.
-   시트 링크는 구글 권한이 없으면 열리지 않지만, 문서 ID 노출이 싫으면 이 문서를 레포 밖으로 옮깁니다.
-3. 기본 브랜치를 `main` 으로 만듭니다: `git push origin init-site:main` 후
-   GitHub **Settings → General → Default branch** 를 `main` 으로 변경합니다.
-4. 레포를 공개로 전환합니다: **Settings → General → Danger Zone → Change visibility → Public**
-   (또는 `gh repo edit gist-ailab/kros-rlr --visibility public`)
-5. Pages 를 켭니다: **Settings → Pages → Deploy from a branch → `main` / `/ (root)`**
-6. 몇 분 뒤 https://gist-ailab.github.io/kros-rlr/ 에서 사이트를 확인합니다.
+- 공개 주소: https://gist-ailab.github.io/rol-tc-kros/
+- 소스: `gist-ailab/rol-tc-kros` 레포의 `main` 브랜치 루트
+- **`main` 에 푸시하면 자동으로 다시 빌드됩니다.** 보통 1분 안에 반영됩니다.
+
+반영이 안 되면 GitHub 레포의 **Actions** 탭에서 `pages build and deployment` 워크플로가
+실패하지 않았는지 확인하세요. 배포 상태는 터미널에서도 볼 수 있습니다.
+
+```bash
+gh api repos/gist-ailab/rol-tc-kros/pages/builds/latest --jq '{status:.status, error:.error.message}'
+curl -sL -o /dev/null -w "%{http_code}\n" https://gist-ailab.github.io/rol-tc-kros/
+```
+
+> 레포 이름을 다시 바꾸면 공개 주소도 함께 바뀝니다. 옛 주소는 한동안 새 주소로 자동 연결되지만,
+> 이 문서와 `README.md` 의 주소 표기도 같이 고쳐 주세요.
