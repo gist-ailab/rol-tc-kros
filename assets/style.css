@@ -66,6 +66,7 @@ header {
   flex-shrink: 0;
 }
 .logo span { color: var(--text-muted); font-weight: 400; }
+.logo img { height: 46px; display: block; width: auto; }
 
 .tabs {
   display: flex;

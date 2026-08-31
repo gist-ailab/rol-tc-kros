@@ -118,6 +118,22 @@ Gallery 섹션 구조를 따라 섹션을 추가하면 됩니다.
 상세 페이지 작성 절차는 [이전 워크샵 회차 추가](#이전-워크샵-회차-추가-workshops)를 따르되,
 완성 예시는 `workshops/2026/2nd/index.html` 을 참고하면 됩니다.
 
+## 로고 자산 (assets/logos/)
+
+원본은 `assets/logos/logo-download/` 의 SVG 6종(1a/2a/가로형 × positive/reverse)이며,
+여기서 파생본을 만들어 두었습니다. **positive = 흰 배경용, reverse = 어두운 배경용.**
+
+| 폴더 | 형식 | 용도 |
+|---|---|---|
+| `assets/logos/png/` | 투명 배경 PNG (원본의 4배 해상도) | PPT에 바로 붙여넣기, 웹 |
+| `assets/logos/ai/` | .ai (PDF 기반 벡터) | Illustrator에서 바로 열기 |
+| `assets/logos/favicon/` + 루트 `favicon.ico` | 512/180/32/16 PNG + ico | 브라우저 탭 아이콘 |
+
+- 홈페이지 헤더 로고: `RoL-TC_1a_positive` (다섯 페이지 공통, `.logo img` 높이 46px)
+- 파비콘: `RoL-TC_2a_positive` 의 타일+빨간 점 영역을 정사각 크롭한 것
+- 로고 폰트: Archivo(900/800), IBM Plex Mono(500). 이 머신에는 `~/.local/share/fonts/rlr-logo/` 에 설치되어 있습니다.
+- 파생본 재생성 방법: 원본 SVG를 수정한 뒤, 헤드리스 크롬으로 PNG(`--screenshot` + `--force-device-scale-factor=4` + `--default-background-color=00000000`)와 .ai(`--print-to-pdf`, .ai는 PDF 기반이라 확장자만 .ai로 저장)를 뽑습니다. 원본 SVG는 텍스트가 폰트를 참조하므로 위 폰트가 설치된 환경에서 변환해야 글자가 정확히 나옵니다.
+
 ## 회원 명단 관리
 
 회원 명단은 아래 구글 시트에서 관리합니다. (구글 계정 권한이 있어야 열립니다.)
