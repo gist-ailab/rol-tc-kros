@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//KROS Robot Learning Research//Workshop//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2026-2nd@rol-tc-kros.gist-ailab.github.io
+DTSTAMP:20260831T000000Z
+DTSTART:20260626T040000Z
+DTEND:20260626T090000Z
+SUMMARY:2026년 제 2회 로봇학습연구회 워크샵
+LOCATION:한국생산기술연구원 인간중심생산기술연구소
+DESCRIPTION:https://gist-ailab.github.io/rol-tc-kros/workshops/2026/2nd/
+END:VEVENT
+END:VCALENDAR

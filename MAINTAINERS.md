@@ -82,7 +82,13 @@ Gallery 섹션 구조를 따라 섹션을 추가하면 됩니다.
 
 - 구글 캘린더: `...render?action=TEMPLATE&text=<제목>&dates=<시작>/<종료>&location=<장소>`
   날짜는 **UTC** `YYYYMMDDTHHMMSSZ` 형식입니다. 한국시간 13:00~18:00 은 UTC 로 `T040000Z/T090000Z` 입니다.
-- Outlook: `...deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=...&startdt=2026-10-23T13:00:00+09:00&enddt=...`
+- Outlook·기타 캘린더 앱: `events/<연도>-<회차>.ics` 파일을 만들고 `download` 속성으로 연결합니다.
+  (예: `<a href="events/2026-3rd.ics" download>`) `.ics` 안의 `DTSTART`/`DTEND` 도 **UTC** 형식이므로,
+  기존 파일을 복사해 UID·제목·장소·시간만 바꾸면 됩니다.
+
+  > `outlook.live.com/.../deeplink/compose` 방식은 쓰지 마세요. 개인 Microsoft 계정으로 로그인한
+  > 상태가 아니면 일정 추가 화면 대신 마이크로소프트 홍보 페이지로 넘어갑니다(2026-08-31 확인).
+  > `.ics` 파일은 Outlook 데스크톱·웹, 애플 캘린더, 썬더버드 어디서나 열립니다.
 - 네이버지도: `https://map.naver.com/v5/search/<장소>`
 - TMAP: `tmap://search?name=<장소>` — **앱이 설치된 모바일에서만 열립니다.** 데스크톱에서 눌러도 반응이 없는 것이 정상입니다.
 
