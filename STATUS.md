@@ -8,6 +8,19 @@
 정적 사이트 5개 페이지가 GitHub Pages 로 공개 서비스 중이며,
 지난 회차(2026 제2회) 기록과 다가오는 회차(2026 제3회) 안내, 가입신청 폼이 모두 살아 있습니다.
 
+## 시간표 작업 파일 구조
+
+```
+scripts/
+├── sync_timetable.py       # 게시 CSV → 홈의 표지 안 HTML 생성
+├── timetable.config.json   # CSV 주소·워크샵ID 설정 (CSV 주소는 아직 미입력)
+├── preview.sh              # 로컬 브라우저 미리보기 서버
+└── tests/                 # 예시 CSV·동기화 unittest
+```
+
+제3회 실제 시간표는 아직 미정이며 홈은 임시 내용을 표시합니다. 게시 CSV 주소와 확정 시간표를 받은 뒤
+[`MAINTAINERS.md`](MAINTAINERS.md)의 로컬 확인 절차에 따라 반영합니다.
+
 ## 완료된 것
 
 | 영역 | 상태 |

@@ -23,6 +23,11 @@
 │   ├── icons/                      # 서비스 아이콘 (구글캘린더·Outlook·네이버지도·TMAP·일정추가)
 │   └── logos/                      # RoL-TC 로고 (원본 SVG, 배포용 PNG·AI, 파비콘)
 ├── events/                         # 회차별 일정 파일 (.ics)
+├── scripts/                        # 시간표 CSV 동기화·로컬 미리보기·테스트
+│   ├── sync_timetable.py
+│   ├── timetable.config.json
+│   ├── preview.sh
+│   └── tests/                      # 샘플 CSV와 unittest
 ├── favicon.ico
 ├── .nojekyll                       # GitHub Pages 의 Jekyll 처리 비활성화
 ├── README.md                       # 이 문서 — 사이트 소개
