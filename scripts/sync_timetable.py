@@ -18,13 +18,18 @@ COLUMNS = ("워크샵ID", "시작", "종료", "내용", "발표자/진행")
 PRIVATE_HEADERS = ("연락처", "전화", "휴대", "이메일", "메일", "email", "phone", "등록비", "입금")
 PHONE = re.compile(r"(?<!\d)01\d-?\d{3,4}-?\d{4}(?!\d)")
 HANGUL = re.compile(r"[가-힣]")
-SPEAKER_SPLIT = re.compile(r"[·/]")
+UNDECIDED = {"tbd", "tba", "미정", "추후", "추후 공지", "-"}
 
 
 class SyncError(Exception):
     def __init__(self, message, code=1):
         super().__init__(message)
         self.code = code
+
+
+def clean_value(value):
+    value = " ".join(value.split())
+    return "" if value.casefold() in UNDECIDED else value
 
 
 def parse_csv(data, wsid):
@@ -56,13 +61,16 @@ def parse_csv(data, wsid):
     if tuple(header) != COLUMNS:
         raise SyncError("CSV 머리글은 워크샵ID, 시작, 종료, 내용, 발표자/진행 순서여야 합니다.")
     selected = []
+    matched = False
     for row_number, row in raw_rows:
         if len(row) != len(COLUMNS):
             raise SyncError(f"열 개수가 맞지 않습니다 ({row_number}행).")
-        values = dict(zip(COLUMNS, (cell.strip() for cell in row)))
+        values = dict(zip(COLUMNS, (clean_value(cell) for cell in row)))
         if values["워크샵ID"] == wsid:
-            selected.append(values)
-    if not selected:
+            matched = True
+            if values["내용"] or values["발표자/진행"]:
+                selected.append(values)
+    if not matched:
         raise SyncError(f"워크샵ID {wsid!r}에 맞는 행이 없습니다.")
     return selected
 
@@ -75,18 +83,21 @@ def classify(title, speaker, talk_number):
         (("폐회",), "badge-open", "폐회"),
         (("휴식", "coffee", "break", "브레이크"), "badge-break", "휴식"),
         (("석식", "만찬", "저녁", "dinner"), "badge-break", "만찬"),
+        (("교류", "세션"), "badge-discussion", "교류"),
         (("토론", "질의", "q&a", "패널", "네트워킹"), "badge-discussion", "토론"),
-        (("랩투어", "투어"), "badge-discussion", "랩투어"),
+        (("랩투어", "투어", "tour"), "badge-discussion", "랩투어"),
     ):
         if any(word in lowered for word in words):
             return badge_class, label, False
-    if speaker:
-        return "badge-talk", f"발표 {talk_number}", True
-    return "badge-open", title[:6], False
+    return "badge-talk", f"발표 {talk_number}", True
 
 
 def speaker_parts(value):
-    parts = [part.strip() for part in SPEAKER_SPLIT.split(value)]
+    if "/" in value:
+        affiliation, person = (part.strip() for part in value.split("/", 1))
+        name, _, position = person.partition(" ")
+        return name, " · ".join(part for part in (position, affiliation) if part)
+    parts = [part.strip() for part in value.split("·")]
     return parts[0], " · ".join(part for part in parts[1:] if part)
 
 
@@ -122,17 +133,29 @@ def render(rows):
             name, affiliation = speaker_parts(speaker)
             program.append(f'            <div class="talk-speaker"><strong>{html.escape(name)}</strong>'
                            + (" · " + html.escape(affiliation) if affiliation else "") + "</div>")
+        elif is_talk:
+            program.append('            <div class="talk-speaker tbd">발표자 추후 공지</div>')
         program.extend(("          </td>", "        </tr>"))
 
         if is_talk:
-            name, affiliation = speaker_parts(speaker)
             if speakers:
                 speakers.append("")
+            if speaker:
+                name, affiliation = speaker_parts(speaker)
+                speakers.extend((
+                    '      <div class="speaker-card confirmed">',
+                    f'        <div class="sc-top"><span class="sc-num">{talk_count:02d}</span><span class="sc-status status-confirmed">확정</span></div>',
+                    f'        <div class="sc-name">{html.escape(name)}</div>',
+                    f'        <div class="sc-affil">{html.escape(affiliation)}</div>',
+                ))
+            else:
+                speakers.extend((
+                    '      <div class="speaker-card tbd-card">',
+                    f'        <div class="sc-top"><span class="sc-num">{talk_count:02d}</span><span class="sc-status status-expected">예정</span></div>',
+                    '        <div class="sc-name tbd">발표자 추후 공지</div>',
+                    '        <div class="sc-affil tbd">소속 미정</div>',
+                ))
             speakers.extend((
-                '      <div class="speaker-card confirmed">',
-                f'        <div class="sc-top"><span class="sc-num">{talk_count:02d}</span><span class="sc-status status-confirmed">확정</span></div>',
-                f'        <div class="sc-name">{html.escape(name)}</div>',
-                f'        <div class="sc-affil">{html.escape(affiliation)}</div>',
                 (f'        <div class="sc-title">{html.escape(title)}</div>' if title
                  else '        <div class="sc-title tbd-title">발표 주제 추후 공지</div>'),
                 "      </div>",

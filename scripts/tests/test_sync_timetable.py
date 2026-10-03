@@ -8,6 +8,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts import sync_timetable
+
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts/sync_timetable.py"
@@ -44,24 +46,78 @@ class TimetableSyncTests(unittest.TestCase):
             output = Path(directory) / "preview.html"
             result = run_sync("--csv", SAMPLE, "--out", output)
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertIn("행 9개 / 발표 3편 / 변경 있음", result.stdout)
+            self.assertIn("행 12개 / 발표 5편 / 변경 있음", result.stdout)
             rendered = output.read_bytes()
             self.assertEqual(outside_regions(rendered), outside_regions(self.original_page))
             self.assertEqual(PAGE.read_bytes(), self.original_page)
             text = rendered.decode("utf-8")
-            self.assertIn('<span class="value">발표 3편</span>', text)
+            self.assertIn('<span class="value">발표 5편</span>', text)
             self.assertIn('<span class="type-badge badge-open">등록</span>', text)
             self.assertIn('<span class="type-badge badge-break">휴식</span>', text)
             self.assertIn('<span class="type-badge badge-break">만찬</span>', text)
             self.assertIn('<span class="type-badge badge-discussion">토론</span>', text)
             self.assertIn('<span class="type-badge badge-discussion">랩투어</span>', text)
-            self.assertIn('<span class="type-badge badge-talk">발표 3</span>', text)
-            self.assertEqual(text.count('<div class="speaker-card confirmed">'), 3)
+            self.assertIn('<span class="type-badge badge-discussion">교류</span>', text)
+            self.assertIn('<span class="type-badge badge-talk">발표 5</span>', text)
+            self.assertEqual(text.count('<div class="speaker-card confirmed">'), 4)
+            self.assertEqual(text.count('<div class="speaker-card tbd-card">'), 1)
             self.assertIn('<div class="talk-title"><em>Example Talk Title</em></div>', text)
             self.assertIn('<td class="time-cell">13:00–13:10</td>', text)
             self.assertIn('<td class="time-cell">14:00</td>', text)
             self.assertIn('<td class="time-cell tbd">미정</td>', text)
             self.assertIn('<div class="sc-title tbd-title">발표 주제 추후 공지</div>', text)
+
+    def test_clean_value_collapses_whitespace_and_undecided_values(self):
+        self.assertEqual(sync_timetable.clean_value("  예시발표자A  박사과정  "), "예시발표자A 박사과정")
+        for value in ("TBD", "tBa", "미정", "추후", "추후   공지", "-"):
+            with self.subTest(value=value):
+                self.assertEqual(sync_timetable.clean_value(f"  {value}  "), "")
+        self.assertEqual(sync_timetable.clean_value("TBD 발표"), "TBD 발표")
+
+    def test_classification_uses_keywords_then_defaults_to_talk(self):
+        for title, badge, label in (
+            ("교류세션 및 토론", "badge-discussion", "교류"),
+            ("세션", "badge-discussion", "교류"),
+            ("패널 토론", "badge-discussion", "토론"),
+            ("LaB ToUr", "badge-discussion", "랩투어"),
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(sync_timetable.classify(title, "", 1), (badge, label, False))
+        self.assertEqual(sync_timetable.classify("Toward Smooth Motion", "", 2),
+                         ("badge-talk", "발표 2", True))
+        self.assertEqual(sync_timetable.classify("", "예시발표자", 3),
+                         ("badge-talk", "발표 3", True))
+
+    def test_sample_skips_row_with_undecided_title_and_speaker(self):
+        rows = sync_timetable.parse_csv(SAMPLE.read_bytes(), "26-3차")
+        self.assertEqual(len(rows), 12)
+        self.assertEqual(sum(not row["내용"] for row in rows), 1)
+        self.assertEqual(sum(not row["발표자/진행"] for row in rows), 8)
+        only_undecided = "워크샵ID,시작,종료,내용,발표자/진행\n26-3차,13:00,13:10,TBD,미정\n"
+        self.assertEqual(sync_timetable.parse_csv(only_undecided.encode(), "26-3차"), [])
+
+    def test_speaker_formats_and_missing_values_render(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "preview.html"
+            result = run_sync("--csv", SAMPLE, "--out", output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            text = output.read_text(encoding="utf-8")
+            self.assertIn('<div class="talk-speaker"><strong>예시발표자A</strong> · 예시직위 · 예시소속A</div>', text)
+            self.assertIn('<div class="sc-name">예시발표자A</div>', text)
+            self.assertIn('<div class="sc-affil">예시직위 · 예시소속A</div>', text)
+            self.assertIn('<div class="talk-speaker"><strong>예시발표자B</strong> · 박사과정 · 예시소속</div>', text)
+            self.assertIn('<div class="sc-affil">박사과정 · 예시소속</div>', text)
+            self.assertIn('<div class="talk-speaker"><strong>예시발표자C</strong></div>', text)
+            self.assertIn('<div class="talk-speaker"><strong>예시발표자D</strong> · 예시소속</div>', text)
+            self.assertIn('<div class="sc-affil">예시소속</div>', text)
+            self.assertIn('<div class="talk-title tbd">발표 제목 추후 공지</div>', text)
+            self.assertIn('<div class="talk-speaker tbd">발표자 추후 공지</div>', text)
+            self.assertIn('<span class="sc-status status-expected">예정</span>', text)
+            self.assertIn('<div class="sc-name tbd">발표자 추후 공지</div>', text)
+            self.assertIn('<div class="sc-affil tbd">소속 미정</div>', text)
+            self.assertNotIn('<span class="type-badge badge-open">Toward</span>', text)
+            self.assertEqual(text.count('<div class="talk-speaker'), 5)
+            self.assertEqual(text.count('<div class="talk-speaker tbd">'), 1)
 
     def test_second_run_is_identical(self):
         with tempfile.TemporaryDirectory() as directory:
