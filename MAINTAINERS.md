@@ -57,6 +57,23 @@ Gallery 섹션 구조를 따라 섹션을 추가하면 됩니다.
 발표자가 확정되면 프로그램 테이블 행과 발표자 카드를 한 쌍으로 같이 채웁니다.
 확정 상태 배지는 `status-confirmed`(확정) / `status-expected`(예정) 클래스를 씁니다.
 
+### 제3회 시간표 반영 (시트 → 로컬 확인 → 배포)
+
+홈의 프로그램 표 본문, 발표자 카드, 히어로 발표 칩은 `index.html` 의 `timetable:` 주석 표지 안에서
+`scripts/sync_timetable.py` 가 생성합니다. 시트는 공개 사이트에서 직접 읽지 않습니다.
+`scripts/timetable.config.json` 의 `csv_url` 에는 **`웹_시간표` 탭 하나만 웹에 게시한 CSV 주소**를 넣습니다.
+파일 전체 게시 주소나 개인정보가 든 CSV는 쓰지 마세요. 기본 워크샵ID는 `26-3차`입니다.
+
+1. 시트의 `WS_<워크샵ID>` 탭에 시간표를 작성하고 메뉴 **시간표 → 웹 게시용 탭 갱신**을 실행합니다.
+2. `python3 scripts/sync_timetable.py --check` 로 바뀔 내용을 확인합니다.
+3. `python3 scripts/sync_timetable.py` 로 `index.html` 을 갱신합니다.
+4. `bash scripts/preview.sh` 로 띄운 `http://localhost:8000/` (포트가 사용 중이면 8001)을 로컬 브라우저에서 확인합니다.
+5. 이상이 없으면 커밋 후 `main` 에 푸시하여 공개 배포합니다. **로컬 확인 전에는 `main` 에 푸시하지 않습니다.**
+
+게시 주소를 설정하기 전에는 `--csv <파일>` 로 로컬 CSV를 지정해 같은 절차를 시험할 수 있습니다.
+`--out <경로>` 는 원본을 그대로 두고 별도 HTML을 만들며, `--check` 는 파일을 쓰지 않습니다.
+검증은 `python3 -m unittest discover -s scripts/tests -v` 로 실행합니다.
+
 ### 이전 워크샵 회차 추가 (`workshops/`)
 
 워크샵이 끝나면 아카이브에 회차를 추가합니다.
