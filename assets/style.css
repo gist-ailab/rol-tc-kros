@@ -587,6 +587,10 @@ h2 {
   transition: background 0.15s, border-color 0.15s;
 }
 .btn:hover { background: var(--accent-dim); border-color: var(--accent); }
+/* 히어로의 참석 등록 버튼: 어두운 그라데이션 위에서 흰 버튼으로 눈에 띄게 둔다. */
+.hero-cta { margin-top: 22px; }
+.hero-cta .btn { font-size: 13px; padding: 11px 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+.hero-cta .btn:hover { background: var(--accent-tint); }
 
 .prose { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
 .prose strong { color: var(--text); }
