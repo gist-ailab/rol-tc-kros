@@ -32,6 +32,27 @@ def outside_regions(data):
     return REGION.sub(lambda match: match.group(1) + b"<generated>" + match.group(3), data)
 
 
+SPEAKERS_FIXTURE = (
+    "\n  <section>\n    <div class=\"speaker-grid\">\n"
+    "      <!-- timetable:speakers:begin -->\n      <!-- timetable:speakers:end -->\n"
+    "    </div>\n  </section>\n"
+)
+
+
+def page_with_speakers(directory):
+    """발표자 카드 구역이 있는 시험용 페이지를 만든다.
+
+    실제 홈은 시간표와 겹친다는 이유로 발표자 섹션을 뺐지만, 회차 상세 페이지처럼
+    카드 구역을 둘 수도 있으므로 카드 생성 규칙은 이 사본으로 계속 검사한다.
+    """
+    text = PAGE.read_text(encoding="utf-8")
+    anchor = "\n  <!-- 행사 정보 -->"
+    assert anchor in text
+    path = Path(directory) / "with_speakers.html"
+    path.write_text(text.replace(anchor, SPEAKERS_FIXTURE + anchor, 1), encoding="utf-8")
+    return path
+
+
 class TimetableSyncTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -59,13 +80,19 @@ class TimetableSyncTests(unittest.TestCase):
             self.assertIn('<span class="type-badge badge-discussion">랩투어</span>', text)
             self.assertIn('<span class="type-badge badge-discussion">교류</span>', text)
             self.assertIn('<span class="type-badge badge-talk">발표 5</span>', text)
-            self.assertEqual(text.count('<div class="speaker-card confirmed">'), 4)
-            self.assertEqual(text.count('<div class="speaker-card tbd-card">'), 1)
+            # 실제 홈에는 발표자 구역이 없으므로 카드가 생기지 않아야 한다.
+            self.assertNotIn('speaker-card', text)
+            fixture = page_with_speakers(directory)
+            carded = Path(directory) / "carded.html"
+            self.assertEqual(run_sync("--csv", SAMPLE, "--page", fixture, "--out", carded).returncode, 0)
+            card_text = carded.read_text(encoding="utf-8")
+            self.assertEqual(card_text.count('<div class="speaker-card confirmed">'), 4)
+            self.assertEqual(card_text.count('<div class="speaker-card tbd-card">'), 1)
             self.assertIn('<div class="talk-title"><em>Example Talk Title</em></div>', text)
             self.assertIn('<td class="time-cell">13:00–13:10</td>', text)
             self.assertIn('<td class="time-cell">14:00</td>', text)
             self.assertIn('<td class="time-cell tbd">미정</td>', text)
-            self.assertIn('<div class="sc-title tbd-title">발표 주제 추후 공지</div>', text)
+            self.assertIn('<div class="sc-title tbd-title">발표 주제 추후 공지</div>', card_text)
 
     def test_clean_value_collapses_whitespace_and_undecided_values(self):
         self.assertEqual(sync_timetable.clean_value("  예시발표자A  박사과정  "), "예시발표자A 박사과정")
@@ -99,7 +126,7 @@ class TimetableSyncTests(unittest.TestCase):
     def test_speaker_formats_and_missing_values_render(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "preview.html"
-            result = run_sync("--csv", SAMPLE, "--out", output)
+            result = run_sync("--csv", SAMPLE, "--page", page_with_speakers(directory), "--out", output)
             self.assertEqual(result.returncode, 0, result.stderr)
             text = output.read_text(encoding="utf-8")
             self.assertIn('<div class="talk-speaker"><strong>예시발표자A</strong> · 예시직위 · 예시소속A</div>', text)

@@ -172,6 +172,10 @@ def replace_regions(source, regions):
     for name, lines in regions.items():
         begin = f"<!-- timetable:{name}:begin -->"
         end = f"<!-- timetable:{name}:end -->"
+        # 발표자 카드 구역은 선택 사항이다. 시간표와 내용이 겹쳐 홈에서 뺀 경우처럼
+        # 표지가 아예 없으면 건너뛴다. 표지가 있는데 짝이 맞지 않으면 여전히 오류로 본다.
+        if name == "speakers" and result.count(begin) == 0 and result.count(end) == 0:
+            continue
         if result.count(begin) != 1 or result.count(end) != 1:
             raise SyncError(f"{name} 생성 구역 표지가 정확히 한 쌍이어야 합니다.")
         body_start = result.index(begin) + len(begin)
