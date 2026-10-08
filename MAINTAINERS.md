@@ -135,8 +135,8 @@ grep -rho "?v=[0-9a-z]*" --include="*.html" . | sort -u   # 하나로 통일됐�
   > `outlook.live.com/.../deeplink/compose` 방식은 쓰지 마세요. 개인 Microsoft 계정으로 로그인한
   > 상태가 아니면 일정 추가 화면 대신 마이크로소프트 홍보 페이지로 넘어갑니다(2026-08-31 확인).
   > `.ics` 파일은 Outlook 데스크톱·웹, 애플 캘린더, 썬더버드 어디서나 열립니다.
-- 네이버지도: `https://map.naver.com/v5/search/<장소>`
-- TMAP: `tmap://search?name=<장소>` — **앱이 설치된 모바일에서만 열립니다.** 데스크톱에서 눌러도 반응이 없는 것이 정상입니다.
+- 네이버지도: 정확한 장소 공유 링크(`naver.me/...`)가 있으면 그것을 쓰고, 없으면 `https://map.naver.com/v5/search/<장소>`
+- TMAP: 좌표를 알면 `tmap://route?goalname=<장소>&goalx=<경도>&goaly=<위도>` 로 바로 길안내(제3회 홈이 이 방식), 모르면 `tmap://search?name=<장소>` — **앱이 설치된 모바일에서만 열립니다.** 데스크톱에서 눌러도 반응이 없는 것이 정상입니다.
 
 한글·공백이 들어가는 값은 모두 URL 인코딩해서 넣습니다.
 
