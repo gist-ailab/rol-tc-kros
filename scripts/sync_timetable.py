@@ -105,11 +105,14 @@ def render(rows):
     program = []
     speakers = []
     talk_count = 0
+    exchange_titles = []  # 교류 배지로 분류된 행의 내용(히어로 칩에 세션 수로 따로 보여 준다)
     for row in rows:
         title, speaker = row["내용"], row["발표자/진행"]
         badge_class, badge, is_talk = classify(title, speaker, talk_count + 1)
         if is_talk:
             talk_count += 1
+        elif badge == "교류":
+            exchange_titles.append(title)
 
         start, end = row["시작"], row["종료"]
         time_cell = (f'<td class="time-cell">{html.escape(start + ("–" + end if end else ""))}</td>'
@@ -161,7 +164,16 @@ def render(rows):
                 "      </div>",
             ))
 
-    count_chip = (f'<span class="value">발표 {talk_count}편</span>' if talk_count
+    # 히어로 칩은 발표(메인세션)와 교류세션을 나눠 센다. 교류 행의 내용이 모두 같으면 그 이름을,
+    # 서로 다르면 "교류세션" 을 쓴다. 예: "메인세션 7편 · 소프트로봇 교류세션 3편"
+    parts = []
+    if talk_count:
+        parts.append(f"메인세션 {talk_count}편")
+    if exchange_titles:
+        names = {t for t in exchange_titles if t}
+        label = names.pop() if len(names) == 1 else "교류세션"
+        parts.append(f"{label} {len(exchange_titles)}편")
+    count_chip = (f'<span class="value">{html.escape(" · ".join(parts))}</span>' if parts
                   else '<span class="value tbd">모집 예정</span>')
     return {"program": program, "speakers": speakers, "talkcount": ["          " + count_chip]}, talk_count
 

@@ -72,7 +72,7 @@ class TimetableSyncTests(unittest.TestCase):
             self.assertEqual(outside_regions(rendered), outside_regions(self.original_page))
             self.assertEqual(PAGE.read_bytes(), self.original_page)
             text = rendered.decode("utf-8")
-            self.assertIn('<span class="value">발표 5편</span>', text)
+            self.assertIn('<span class="value">메인세션 5편 · 교류세션 및 토론 1편</span>', text)
             self.assertIn('<span class="type-badge badge-open">등록</span>', text)
             self.assertIn('<span class="type-badge badge-break">휴식</span>', text)
             self.assertIn('<span class="type-badge badge-break">만찬</span>', text)
