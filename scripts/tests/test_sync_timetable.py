@@ -88,7 +88,8 @@ class TimetableSyncTests(unittest.TestCase):
             card_text = carded.read_text(encoding="utf-8")
             self.assertEqual(card_text.count('<div class="speaker-card confirmed">'), 4)
             self.assertEqual(card_text.count('<div class="speaker-card tbd-card">'), 1)
-            self.assertIn('<div class="talk-title"><em>Example Talk Title</em></div>', text)
+            self.assertIn('<div class="talk-title">Example Talk Title</div>', text)
+            self.assertNotIn('<em>', text.split('timetable:program:begin')[1].split('timetable:program:end')[0])
             self.assertIn('<td class="time-cell">13:00–13:10</td>', text)
             self.assertIn('<td class="time-cell">14:00</td>', text)
             self.assertIn('<td class="time-cell tbd">미정</td>', text)
@@ -223,7 +224,7 @@ class TimetableSyncTests(unittest.TestCase):
             result = run_sync("--csv", csv_file, "--out", output)
             self.assertEqual(result.returncode, 0, result.stderr)
             rendered = output.read_text(encoding="utf-8")
-            self.assertIn("<em>Example &lt;script&gt; &amp; Talk</em>", rendered)
+            self.assertIn("Example &lt;script&gt; &amp; Talk", rendered)
             self.assertIn("예시 &lt;소속&gt;", rendered)
             self.assertNotIn("<script>", rendered)
 

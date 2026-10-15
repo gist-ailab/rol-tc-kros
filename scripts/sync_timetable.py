@@ -17,7 +17,6 @@ CONFIG = Path(__file__).with_name("timetable.config.json")
 COLUMNS = ("워크샵ID", "시작", "종료", "내용", "발표자/진행")
 PRIVATE_HEADERS = ("연락처", "전화", "휴대", "이메일", "메일", "email", "phone", "등록비", "입금")
 PHONE = re.compile(r"(?<!\d)01\d-?\d{3,4}-?\d{4}(?!\d)")
-HANGUL = re.compile(r"[가-힣]")
 UNDECIDED = {"tbd", "tba", "미정", "추후", "추후 공지", "-"}
 
 
@@ -118,10 +117,9 @@ def render(rows):
         time_cell = (f'<td class="time-cell">{html.escape(start + ("–" + end if end else ""))}</td>'
                      if start else '<td class="time-cell tbd">미정</td>')
         if title:
-            escaped_title = html.escape(title)
-            if not HANGUL.search(title):
-                escaped_title = f"<em>{escaped_title}</em>"
-            title_cell = f'<div class="talk-title">{escaped_title}</div>'
+            # 영문 제목도 한글 제목과 같은 글꼴로 쓴다. 예전처럼 영문만 기울이면
+            # coffee break·lab tour 같은 영문 순서 이름까지 발표 제목처럼 보였다.
+            title_cell = f'<div class="talk-title">{html.escape(title)}</div>'
         else:
             title_cell = '<div class="talk-title tbd">발표 제목 추후 공지</div>'
 
