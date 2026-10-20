@@ -147,6 +147,26 @@ class TimetableSyncTests(unittest.TestCase):
             self.assertEqual(text.count('<div class="talk-speaker'), 5)
             self.assertEqual(text.count('<div class="talk-speaker tbd">'), 1)
 
+    def test_session_column_groups_talks_into_named_session(self):
+        csv_text = (
+            "워크샵ID,시작,종료,내용,발표자/진행,세션\n"
+            "T,13:00,13:20,Main Example Talk,예시소속 / 예시발표자A 박사과정,\n"
+            "T,17:00,17:20,TBD,예시소속B / 예시발표자B 교수님,예시 교류세션\n"
+            "T,17:20,17:40,Session Example Talk,예시소속C / 예시발표자C 박사님,예시 교류세션\n"
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "session.csv"
+            source.write_text(csv_text, encoding="utf-8")
+            output = Path(directory) / "out.html"
+            result = run_sync("--csv", source, "--wsid", "T", "--out", output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            text = output.read_text(encoding="utf-8")
+            self.assertIn('<span class="value">메인세션 1편 · 예시 교류세션 2편</span>', text)
+            self.assertEqual(text.count('<span class="type-badge badge-discussion">교류</span>'), 2)
+            self.assertIn('<div class="talk-title tbd">발표 제목 추후 공지</div>', text)
+            self.assertIn('<strong>예시발표자B</strong> · 교수님 · 예시소속B', text)
+            self.assertNotIn('발표 2</span>', text)
+
     def test_second_run_is_identical(self):
         with tempfile.TemporaryDirectory() as directory:
             first = Path(directory) / "first.html"

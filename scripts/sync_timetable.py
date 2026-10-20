@@ -57,14 +57,18 @@ def parse_csv(data, wsid):
     except csv.Error as exc:
         raise SyncError(f"CSV를 읽을 수 없습니다 ({reader.line_num}행): {exc}") from exc
 
-    if tuple(header) != COLUMNS:
-        raise SyncError("CSV 머리글은 워크샵ID, 시작, 종료, 내용, 발표자/진행 순서여야 합니다.")
+    # 6번째 열 "세션"은 선택 사항이다. 값이 있는 행은 그 이름의 세션(예: 소프트로봇 교류세션)에
+    # 속한 발표로 보고, 메인세션 발표 수가 아니라 그 세션의 편수로 센다.
+    columns = tuple(header)
+    if columns not in (COLUMNS, COLUMNS + ("세션",)):
+        raise SyncError("CSV 머리글은 워크샵ID, 시작, 종료, 내용, 발표자/진행(, 세션) 순서여야 합니다.")
     selected = []
     matched = False
     for row_number, row in raw_rows:
-        if len(row) != len(COLUMNS):
+        if len(row) != len(columns):
             raise SyncError(f"열 개수가 맞지 않습니다 ({row_number}행).")
-        values = dict(zip(COLUMNS, (clean_value(cell) for cell in row)))
+        values = dict(zip(columns, (clean_value(cell) for cell in row)))
+        values.setdefault("세션", "")
         if values["워크샵ID"] == wsid:
             matched = True
             if values["내용"] or values["발표자/진행"]:
@@ -107,11 +111,17 @@ def render(rows):
     exchange_titles = []  # 교류 배지로 분류된 행의 내용(히어로 칩에 세션 수로 따로 보여 준다)
     for row in rows:
         title, speaker = row["내용"], row["발표자/진행"]
-        badge_class, badge, is_talk = classify(title, speaker, talk_count + 1)
-        if is_talk:
-            talk_count += 1
-        elif badge == "교류":
-            exchange_titles.append(title)
+        session = row.get("세션", "")
+        if session:
+            # 세션에 속한 발표: 교류 배지로 표시하고 세션 이름으로 센다.
+            badge_class, badge, is_talk = "badge-discussion", "교류", False
+            exchange_titles.append(session)
+        else:
+            badge_class, badge, is_talk = classify(title, speaker, talk_count + 1)
+            if is_talk:
+                talk_count += 1
+            elif badge == "교류":
+                exchange_titles.append(title)
 
         start, end = row["시작"], row["종료"]
         time_cell = (f'<td class="time-cell">{html.escape(start + ("–" + end if end else ""))}</td>'
