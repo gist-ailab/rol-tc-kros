@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로봇학습연구회 | 2026년 제 3회 워크샵</title>
+    <link rel="icon" href="../../../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/logos/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/logos/favicon/favicon-16.png">
+  <link rel="apple-touch-icon" href="../../../assets/logos/favicon/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/style.css?v=20261006a">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="../../../index.html"><img src="../../../assets/logos/png/RoL-TC_1a_positive.png" alt="RoL-TC · KROS Robot Learning Research"></a>
+  <nav class="tabs">
+    <a class="tab" href="../../../index.html">Home</a>
+    <a class="tab active" href="../../../workshops/index.html">Workshops</a>
+    <a class="tab" href="../../../photos/index.html">Photos</a>
+    <a class="tab" href="../../../join/index.html">Membership</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">로봇학습연구회 · 워크샵 아카이브</div>
+    <h1>2026년 제 3회<br>로봇학습연구회 <em>워크샵</em></h1>
+    <div class="hero-meta">
+      <div class="meta-chip chip-accent">
+        <span class="icon">📅</span>
+        <div>
+          <span class="label">일시</span>
+          <span class="value">2026년 10월 23일 (금) 13:00~18:00</span>
+          <div class="chip-actions">
+            <div class="cal-add">
+              <button type="button" class="chip-icon cal-add-btn" aria-haspopup="true" aria-expanded="false" title="일정 추가" aria-label="일정 추가"><img src="../../../assets/icons/addcal.svg" alt="일정 추가" width="20" height="20"></button>
+              <div class="cal-add-menu" hidden>
+                <a class="cal-add-item" href="https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&amp;rru=addevent&amp;subject=2026%EB%85%84%20%EC%A0%9C%203%ED%9A%8C%20%EB%A1%9C%EB%B4%87%ED%95%99%EC%8A%B5%EC%97%B0%EA%B5%AC%ED%9A%8C%20%EC%9B%8C%ED%81%AC%EC%83%B5&amp;startdt=2026-10-23T13%3A00%3A00%2B09%3A00&amp;enddt=2026-10-23T18%3A00%3A00%2B09%3A00&amp;location=%ED%95%9C%EA%B5%AD%EA%B8%B0%EA%B3%84%EC%97%B0%EA%B5%AC%EC%9B%90%20%EB%B3%B8%EA%B4%80%EB%8F%99%20%28R1%29%201%EC%B8%B5%20%EB%8C%80%EA%B0%95%EB%8B%B9%2C%20%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%EA%B0%80%EC%A0%95%EB%B6%81%EB%A1%9C%20156&amp;body=https%3A%2F%2Fgist-ailab.github.io%2Frol-tc-kros%2F" target="_blank" rel="noopener"><img src="../../../assets/icons/outlook.svg" alt="" width="20" height="20"><span class="cai-text"><span class="cai-label">Outlook (개인 계정)</span><span class="cai-desc">outlook.com · hotmail 계정</span></span></a>
+                <a class="cal-add-item" href="https://outlook.office.com/calendar/0/deeplink/compose?path=/calendar/action/compose&amp;rru=addevent&amp;subject=2026%EB%85%84%20%EC%A0%9C%203%ED%9A%8C%20%EB%A1%9C%EB%B4%87%ED%95%99%EC%8A%B5%EC%97%B0%EA%B5%AC%ED%9A%8C%20%EC%9B%8C%ED%81%AC%EC%83%B5&amp;startdt=2026-10-23T13%3A00%3A00%2B09%3A00&amp;enddt=2026-10-23T18%3A00%3A00%2B09%3A00&amp;location=%ED%95%9C%EA%B5%AD%EA%B8%B0%EA%B3%84%EC%97%B0%EA%B5%AC%EC%9B%90%20%EB%B3%B8%EA%B4%80%EB%8F%99%20%28R1%29%201%EC%B8%B5%20%EB%8C%80%EA%B0%95%EB%8B%B9%2C%20%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%EA%B0%80%EC%A0%95%EB%B6%81%EB%A1%9C%20156&amp;body=https%3A%2F%2Fgist-ailab.github.io%2Frol-tc-kros%2F" target="_blank" rel="noopener"><img src="../../../assets/icons/outlook.svg" alt="" width="20" height="20"><span class="cai-text"><span class="cai-label">Outlook (회사·학교 계정)</span><span class="cai-desc">Microsoft 365 계정</span></span></a>
+                <a class="cal-add-item" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=2026%EB%85%84%20%EC%A0%9C%203%ED%9A%8C%20%EB%A1%9C%EB%B4%87%ED%95%99%EC%8A%B5%EC%97%B0%EA%B5%AC%ED%9A%8C%20%EC%9B%8C%ED%81%AC%EC%83%B5&amp;dates=20261023T040000Z/20261023T090000Z&amp;details=2026%EB%85%84%20%EC%A0%9C%203%ED%9A%8C%20%EB%A1%9C%EB%B4%87%ED%95%99%EC%8A%B5%EC%97%B0%EA%B5%AC%ED%9A%8C%20%EC%9B%8C%ED%81%AC%EC%83%B5&amp;location=%ED%95%9C%EA%B5%AD%EA%B8%B0%EA%B3%84%EC%97%B0%EA%B5%AC%EC%9B%90%20%EB%B3%B8%EA%B4%80%EB%8F%99%20%28R1%29%201%EC%B8%B5%20%EB%8C%80%EA%B0%95%EB%8B%B9%2C%20%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%EA%B0%80%EC%A0%95%EB%B6%81%EB%A1%9C%20156" target="_blank" rel="noopener"><img src="../../../assets/icons/gcal.svg" alt="" width="20" height="20"><span class="cai-text"><span class="cai-label">구글 캘린더</span><span class="cai-desc">Google 계정</span></span></a>
+                <a class="cal-add-item" href="../../../events/2026-3rd.ics" download><svg viewBox="0 0 24 24" fill="none" stroke="#7a6a63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span class="cai-text"><span class="cai-label">일정 파일 (.ics)</span><span class="cai-desc">데스크톱 Outlook · 애플 캘린더</span></span></a>
+                <div class="cal-add-note">해당 계정으로 로그인되어 있어야 일정이 바로 추가됩니다.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="meta-chip">
+        <span class="icon">🏛</span>
+        <div>
+          <span class="label">장소</span>
+          <span class="value">한국기계연구원 본관동(R1) 1층 대강당</span>
+          <div class="chip-actions">
+            <a class="chip-icon" href="https://naver.me/5apTqDJJ" target="_blank" rel="noopener" title="네이버지도에서 보기" aria-label="네이버지도에서 보기"><img src="../../../assets/icons/navermap.svg" alt="네이버지도"></a>
+            <!-- tmap:// 링크는 TMAP 앱이 설치된 모바일에서만 열립니다. 목적지 좌표는 네이버 장소 11642652(한국기계연구원, naver.me/5apTqDJJ) 기준입니다. -->
+            <a class="chip-icon" href="tmap://route?goalname=%ED%95%9C%EA%B5%AD%EA%B8%B0%EA%B3%84%EC%97%B0%EA%B5%AC%EC%9B%90&amp;goalx=127.3589583&amp;goaly=36.3962305" title="TMAP으로 길찾기 (모바일 앱 전용)" aria-label="TMAP으로 길찾기"><img src="../../../assets/icons/tmap.svg" alt="TMAP"></a>
+          </div>
+        </div>
+      </div>
+      <div class="meta-chip">
+        <span class="icon">🎙</span>
+        <div>
+          <span class="label">발표</span>
+          <span class="value">메인세션 8편 · 소프트로봇 교류세션 4편</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 프로그램 -->
+  <section>
+    <div class="section-label">Program</div>
+    <h2>프로그램</h2>
+    <table class="program-table">
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>내용 / 발표자</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-cell">13:00–13:10</td>
+          <td>
+            <span class="type-badge badge-open">개회</span>
+            <div class="talk-title">개회식</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">13:10–13:30</td>
+          <td>
+            <span class="type-badge badge-talk">발표 1</span>
+            <div class="talk-title">로봇학습 연구동향 소개</div>
+            <div class="talk-speaker"><strong>맹제모</strong> · 박사과정 · 광주과학기술원</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">13:30–13:50</td>
+          <td>
+            <span class="type-badge badge-talk">발표 2</span>
+            <div class="talk-title">Tactile object recognition via grasping with contrastive learning</div>
+            <div class="talk-speaker"><strong>남세현</strong> · 박사 · 한국기계연구원</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">13:50–14:10</td>
+          <td>
+            <span class="type-badge badge-talk">발표 3</span>
+            <div class="talk-title">Noise-attenuated Legged Locomotion via Noise-Proxy-Informed Residual Actions</div>
+            <div class="talk-speaker"><strong>김대현</strong> · 석사과정 · 한국기계연구원</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">14:10–14:30</td>
+          <td>
+            <span class="type-badge badge-talk">발표 4</span>
+            <div class="talk-title">모바일 매니퓰레이션을 활용한 물리적 인간-로봇 협업 기술</div>
+            <div class="talk-speaker"><strong>박진성</strong> · 교수님 · 충남대학교</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">14:30–14:40</td>
+          <td>
+            <span class="type-badge badge-break">휴식</span>
+            <div class="talk-title">coffee break</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">14:40–15:20</td>
+          <td>
+            <span class="type-badge badge-discussion">랩투어</span>
+            <div class="talk-title">lab tour</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">15:20–15:40</td>
+          <td>
+            <span class="type-badge badge-talk">발표 5</span>
+            <div class="talk-title">범용 작업을 위한 계층적 로봇 학습 프레임워크</div>
+            <div class="talk-speaker"><strong>김정중</strong> · 연구실장님 · 한국기계연구원</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">15:40–16:00</td>
+          <td>
+            <span class="type-badge badge-talk">발표 6</span>
+            <div class="talk-title">Learning from Failure: Training on Failed Rollouts with Stitched Expert Recovery for Articulated Object Opening</div>
+            <div class="talk-speaker"><strong>이상범</strong> · 통합과정 · 광주과학기술원</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">16:00–16:20</td>
+          <td>
+            <span class="type-badge badge-talk">발표 7</span>
+            <div class="talk-title">Selectively, Act Adaptively: Dual-Level Structural Decomposition for Bimanual Robot Manipulation</div>
+            <div class="talk-speaker"><strong>최윤지</strong> · 석사과정 · 동국대학교</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">16:20–16:40</td>
+          <td>
+            <span class="type-badge badge-talk">발표 8</span>
+            <div class="talk-title">Toward Smooth and Feasible Imitation Learning</div>
+            <div class="talk-speaker"><strong>박수한</strong> · 교수님 · 광운대학교</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">16:40–17:00</td>
+          <td>
+            <span class="type-badge badge-break">휴식</span>
+            <div class="talk-title">coffee break</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">17:00–17:20</td>
+          <td>
+            <span class="type-badge badge-discussion">교류</span>
+            <div class="talk-title">Sensing and Grasping by Design: Soft Tactile Sensing and Delicate Manipulation with Simple, Embodied Hardware</div>
+            <div class="talk-speaker"><strong>허태명</strong> · 교수님 · UC Santa Cruz</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">17:20–17:40</td>
+          <td>
+            <span class="type-badge badge-discussion">교류</span>
+            <div class="talk-title">Sensorized Bodies: From dexterous hand motion to underwater locomotion</div>
+            <div class="talk-speaker"><strong>박명선</strong> · 박사님 · UC San Diego</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">17:40–17:50</td>
+          <td>
+            <span class="type-badge badge-discussion">교류</span>
+            <div class="talk-title">Beyond the Brain: Embodied Intelligence through Soft Robotics in Europe</div>
+            <div class="talk-speaker"><strong>김장길</strong> · 교수님 · 서울대학교 RI</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-cell">17:50–18:00</td>
+          <td>
+            <span class="type-badge badge-discussion">교류</span>
+            <div class="talk-title">Beyond Open and Close: Selectable Finger Postures for Soft Wearable Hand Assistance</div>
+            <div class="talk-speaker"><strong>김태현</strong> · 석사과정 · 서울대학교</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="notice">
+      <span class="notice-icon">ℹ️</span>
+      <div>2026년 제 3회 로봇학습연구회 워크샵에서 진행된 프로그램입니다.</div>
+    </div>
+  </section>
+
+  <!-- 발표자 -->
+  <section>
+    <div class="section-label">Speakers</div>
+    <h2>발표자</h2>
+    <div class="speaker-grid">
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">01</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">맹제모</div>
+        <div class="sc-affil">박사과정 · 광주과학기술원</div>
+        <div class="sc-title">로봇학습 연구동향 소개</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">02</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">남세현</div>
+        <div class="sc-affil">박사 · 한국기계연구원</div>
+        <div class="sc-title">Tactile object recognition via grasping with contrastive learning</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">03</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">김대현</div>
+        <div class="sc-affil">석사과정 · 한국기계연구원</div>
+        <div class="sc-title">Noise-attenuated Legged Locomotion via Noise-Proxy-Informed Residual Actions</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">04</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">박진성</div>
+        <div class="sc-affil">교수 · 충남대학교</div>
+        <div class="sc-title">모바일 매니퓰레이션을 활용한 물리적 인간-로봇 협업 기술</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">05</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">김정중</div>
+        <div class="sc-affil">연구실장 · 한국기계연구원</div>
+        <div class="sc-title">범용 작업을 위한 계층적 로봇 학습 프레임워크</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">06</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">이상범</div>
+        <div class="sc-affil">통합과정 · 광주과학기술원</div>
+        <div class="sc-title">Learning from Failure: Training on Failed Rollouts with Stitched Expert Recovery for Articulated Object Opening</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">07</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">최윤지</div>
+        <div class="sc-affil">석사과정 · 동국대학교</div>
+        <div class="sc-title">Selectively, Act Adaptively: Dual-Level Structural Decomposition for Bimanual Robot Manipulation</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">08</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">박수한</div>
+        <div class="sc-affil">교수 · 광운대학교</div>
+        <div class="sc-title">Toward Smooth and Feasible Imitation Learning</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">09</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">허태명</div>
+        <div class="sc-affil">교수 · UC Santa Cruz</div>
+        <div class="sc-title">Sensing and Grasping by Design: Soft Tactile Sensing and Delicate Manipulation with Simple, Embodied Hardware</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">10</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">박명선</div>
+        <div class="sc-affil">박사 · UC San Diego</div>
+        <div class="sc-title">Sensorized Bodies: From dexterous hand motion to underwater locomotion</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">11</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">김장길</div>
+        <div class="sc-affil">교수 · 서울대학교 RI</div>
+        <div class="sc-title">Beyond the Brain: Embodied Intelligence through Soft Robotics in Europe</div>
+      </div>
+
+      <div class="speaker-card confirmed">
+        <div class="sc-top"><span class="sc-num">12</span><span class="sc-status status-confirmed">발표 완료</span></div>
+        <div class="sc-name">김태현</div>
+        <div class="sc-affil">석사과정 · 서울대학교</div>
+        <div class="sc-title">Beyond Open and Close: Selectable Finger Postures for Soft Wearable Hand Assistance</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 사진 -->
+  <section>
+    <div class="section-label">Photos</div>
+    <h2>행사 사진</h2>
+    <div class="gallery-grid">
+      <figure>
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczMgtY6x7hTLrMb5oI_au482Rnc5D0g7f9eq69xHkUAu2h-hn3edRacHE1kj3vvbvmnn9ASLAwD_guQ5ub7z0k0eYtM3W5Orye2mqL0zh3vEVS_UmKds=w800" alt="2026년 제 3회 로봇학습연구회 워크샵 현장 사진" loading="lazy">
+      </figure>
+      <figure>
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczPmYH3UFkfxBcB97gOq0CHC8Uw_Xi-c-Rs9k6qNSqrXqlp5pn-CkpwlZSfYROqyCqqpgoTNvoLkHWAXthLUCZj00Gq6mrnbuEnd-25PJSPzzUD9zj_A=w800" alt="2026년 제 3회 로봇학습연구회 워크샵 현장 사진" loading="lazy">
+      </figure>
+      <figure>
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczPkk2KthXREtUaY5mljIKVkRGCocH_5jClHFDFhBy42IkqAOD-Fk-ONiQxrbzCC4f8yy6lpAjitg64TZqkiiKllKgybOCib2s54Z1x143cXgMynoBRI=w800" alt="2026년 제 3회 로봇학습연구회 워크샵 현장 사진" loading="lazy">
+      </figure>
+      <figure>
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczM4zjZat3F4KGJM5LRb0hLtGxC7h2SO8UpGCsj0_tVBqkcBiwg3PuRmaMRtNicjOBisOcg0aLFU5D7I2yjvtag1AjagNKoV24K9vcyPqIPkPvdVHsOi=w800" alt="2026년 제 3회 로봇학습연구회 워크샵 현장 사진" loading="lazy">
+      </figure>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
+      <a class="btn" href="../../../photos/index.html">전체 사진 보기 (Photo 탭)</a>
+      <a class="btn" href="https://photos.google.com/share/AF1QipMkZJ-B459PUsgEJb8lGE5f8KoMazDz0rZKWpin7ZdGQb9X07suyYy1BB_X4lOu_Q?key=cGxOdmVQN1JhSElRLUVNLXEweXg3VmpnTTVTVVln" target="_blank" rel="noopener">구글 포토 앨범에서 보기 ↗</a>
+    </div>
+  </section>
+
+  <!-- 행사 정보 -->
+  <section>
+    <div class="section-label">Venue &amp; Info</div>
+    <h2>행사 정보</h2>
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>일시 / 장소</h3>
+        <div class="info-row">
+          <span class="info-key">일시</span>
+          <span class="info-val">2026년 10월 23일 (금) 13:00~18:00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">장소</span>
+          <span class="info-val">
+            <a href="https://naver.me/5apTqDJJ" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">한국기계연구원 본관동 (R1) 1층 대강당 ↗</a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">주소</span>
+          <span class="info-val">대전광역시 유성구 가정북로 156</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>주최 / 운영</h3>
+        <div class="info-row">
+          <span class="info-key">주최</span>
+          <span class="info-val">로봇학습연구회</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">주관</span>
+          <span class="info-val">한국로봇학회<br>한국기계연구원<br>광주과학기술원 인공지능연구소</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>공식 공지</h3>
+        <div class="info-row">
+          <span class="info-key">안내</span>
+          <span class="info-val">
+            <a href="https://kros.org/Conference/ConferenceView.asp?AC=3&amp;CODE=CD20260603" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">한국로봇학회 행사 공지 ↗</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  로봇학습연구회 (Robot Learning Research Society) &nbsp;·&nbsp;
+  한국로봇학회 산하 연구회 &nbsp;·&nbsp;
+  <a href="mailto:maengjemo@gm.gist.ac.kr">maengjemo@gm.gist.ac.kr</a>
+</footer>
+
+<script src="../../../assets/calendar-popup.js?v=20261006a"></script>
+
+</body>
+</html>
