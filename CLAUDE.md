@@ -49,4 +49,4 @@
 ## 이 저장소 바깥
 
 회원 명단·참석기록을 다루는 구글 시트 Apps Script 는 개인정보 때문에 여기 두지 않는다.
-`/mnt/HDD1/Workspace/src/Project/rlr-sheets-ops/` 에 있다.
+간사 작업 폴더 `~/로학연-간사/`(정본 `시트운영/통합/Code.gs`, 사용법 `README.md`)에 있다. 옛 경로 `rlr-sheets-ops/` 는 심링크다.

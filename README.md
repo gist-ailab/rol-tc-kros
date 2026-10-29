@@ -23,8 +23,9 @@
 │   ├── icons/                      # 서비스 아이콘 (구글캘린더·Outlook·네이버지도·TMAP·일정추가)
 │   └── logos/                      # RoL-TC 로고 (원본 SVG, 배포용 PNG·AI, 파비콘)
 ├── events/                         # 회차별 일정 파일 (.ics)
-├── scripts/                        # 시간표 CSV 동기화·로컬 미리보기·테스트
+├── scripts/                        # 시간표 CSV 동기화·앨범 사진 주소 추출·로컬 미리보기·테스트
 │   ├── sync_timetable.py
+│   ├── album_urls.py               # 구글 포토 공유 앨범 → 슬라이드쇼 사진 주소
 │   ├── timetable.config.json
 │   ├── preview.sh
 │   └── tests/                      # 샘플 CSV와 unittest
